@@ -1,31 +1,26 @@
-import React, { Component } from "react";
-import axios from "axios";
-import Post from "./Post";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-export default class Posts extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      posts: []
-    };
-  }
+export default function Posts() {
+  const [posts, setPosts] = useState([]);
+  useEffect(() => {
+    fetchPosts();
+  }, []);
 
-  componentDidMount() {
-    axios.get("http://jsonplaceholder.typicode.com/posts").then(res => {
-      this.setState({ posts: res.data.slice(0, 5) });
-    });
-  }
+  const fetchPosts = async () => {
+    const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+    const posts = await res.json();
+    setPosts(posts);
+  };
 
-  render() {
-    return (
-      <div>
-        {this.state.posts.map(post => (
-          <Link key={post.id} to={"/" + post.id}>
-            <Post title={post.title} body={post.body} />
-          </Link>
-        ))}
-      </div>
-    );
-  }
+  return (
+    <div>
+      {posts.map(post => (
+        <Link to={`/posts/${post.id}`} key={post.id}>
+          <h3>{post.title}</h3>
+        </Link>
+      ))}
+    </div>
+  );
 }
+
