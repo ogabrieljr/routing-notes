@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
-export default function Posts() {
+export default function Posts(props) {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     fetchPosts();
@@ -13,14 +13,22 @@ export default function Posts() {
     setPosts(posts);
   };
 
+  const func = id => {
+    props.history.push(`/posts/${id}`);
+  };
+
   return (
     <div>
-      {posts.map(post => (
+      {/* {posts.map(post => (
         <Link to={`/posts/${post.id}`} key={post.id}>
           <h3>{post.title}</h3>
         </Link>
+      ))} */}
+      {posts.map(post => (
+        <h3 onClick={() => func(post.id)} key={post.id}>
+          {post.title}
+        </h3>
       ))}
     </div>
   );
 }
-
