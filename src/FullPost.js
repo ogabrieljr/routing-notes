@@ -3,10 +3,6 @@ import React, { useState, useEffect } from "react";
 export default function FullPost({ match }) {
   const [post, setPost] = useState([]);
 
-  useEffect(() => {
-    fetchPost();
-  }, []);
-
   const fetchPost = async () => {
     const res = await fetch(
       `https://jsonplaceholder.typicode.com/posts/${match.params.id}`
@@ -15,6 +11,10 @@ export default function FullPost({ match }) {
     setPost(post);
     console.log(match.params.id);
   };
+
+  useEffect(() => {
+    fetchPost();
+  }, []);
 
   return (
     <div>

@@ -11,6 +11,9 @@ export default function Nav() {
         <Link to="/posts">
           <li>posts</li>
         </Link>
+        <Link to="/shop">
+          <li>shop</li>
+        </Link>
       </ul>
     </div>
   );

@@ -24,6 +24,10 @@ export default function Posts(props) {
           <h3>{post.title}</h3>
         </Link>
       ))} */}
+      <button onClick={() => props.history.push("/")}>back</button>
+
+      <button onClick={() => props.history.push("/shop")}>shop</button>
+
       {posts.map(post => (
         <h3 onClick={() => func(post.id)} key={post.id}>
           {post.title}
