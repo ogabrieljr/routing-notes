@@ -1,19 +1,15 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter, Link, Route } from "react-router-dom";
 
-export default class Example1 extends Component {
-  render() {
-    return (
-      <div>
-        <BrowserRouter>
-          <Nav />
-          <Route exact path="/" component={() => <h1>home</h1>} />
-          <Route path="/posts" component={Posts} />
-          <Route path="/fullpost/:postid" component={FullPost} />
-        </BrowserRouter>
-      </div>
-    );
-  }
+export default function Example1() {
+  return (
+    <BrowserRouter>
+      <Nav />
+      <Route exact path="/" component={() => <h1>home</h1>} />
+      <Route path="/posts" component={Posts} />
+      <Route path="/fullpost/:postid" component={FullPost} />
+    </BrowserRouter>
+  );
 }
 
 function Nav() {
